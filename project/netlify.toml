@@ -1,0 +1,50 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
+
+# Stripe webhook endpoint
+[[redirects]]
+  from = "/api/stripe-webhook"
+  to = "/.netlify/functions/stripe-webhook"
+  status = 200
+  force = true
+
+# API redirects
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "default-src 'self' https://*.supabase.co https://*.stripe.com https://*.elevenlabs.io https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.stripe.com https://images.unsplash.com; script-src 'self' https://*.stripe.com https://www.googletagmanager.com 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https://*.supabase.co https://*.stripe.com https://*.elevenlabs.io https://www.google-analytics.com https://*.netlify.app;"
+
+# Force HTTPS
+[[redirects]]
+  from = "http://*"
+  to = "https://:splat"
+  status = 301
+  force = true
+
+# WWW redirect
+[[redirects]]
+  from = "http://www.jamjock.app/*"
+  to = "https://jamjock.app/:splat"
+  status = 301
+  force = true

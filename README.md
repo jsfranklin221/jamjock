@@ -1,6 +1,6 @@
 # JamJock
 
-An AI-powered app that turns your voice into songs using ElevenLabs voice cloning technology. Built with Bolt.new.
+An AI-powered app that turns your voice into songs. Built with Bolt.new.
 
 ## Project Status
 
@@ -20,7 +20,7 @@ This is an MVP (Minimum Viable Product) with basic functionality:
 ## Built With
 
 - Bolt.new
-- ElevenLabs API for voice cloning
+- ElevenLabs API for voice cloning (also testing kits.ai)
 - Stripe for payments
 - Supabase for database
 ![home](https://github.com/user-attachments/assets/b53887f2-2bda-4248-bcb7-9ad1250c67e0)
